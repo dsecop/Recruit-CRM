@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'accounts',
     'applicants',
     'tags',
+    'companies',
 ]
 
 MIDDLEWARE = [
