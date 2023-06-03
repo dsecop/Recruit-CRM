@@ -12,3 +12,11 @@ class Company(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class Recruiter(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user.email}'
