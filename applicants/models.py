@@ -1,5 +1,6 @@
 from django.db import models
 
+from accounts.models import CustomUser
 from tags.models import Tag
 
 
@@ -12,6 +13,7 @@ class Applicant(models.Model):
     email = models.EmailField(unique=True, max_length=120, verbose_name='email address')
     tags = models.ManyToManyField(Tag, blank=True)
     profile_picture = models.ImageField(blank=True, null=True, upload_to='profile_pictures/')
+    recruiter = models.ForeignKey(CustomUser, related_name='applicants', null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
