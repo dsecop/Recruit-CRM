@@ -1,0 +1,14 @@
+{% include 'base.html' %}
+
+{% block title %} Create a new applicant {% endblock title %}
+
+{% block content %}
+
+    <a href="{% url 'applicants:applicant-list' %}">Go back to applicant list</a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+
+{% endblock content %}
