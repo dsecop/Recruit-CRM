@@ -2,6 +2,7 @@
 
 {% block content %}
 
+    <a href="{% url 'applicants:applicant-create' %}">Create a new applicant</a>
     <ul>
     {% for applicant in applicants %}
         <li>{{ applicant }}</li>
