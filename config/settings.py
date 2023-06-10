@@ -99,3 +99,6 @@ MEDIA_ROOT = 'media_root'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+LOGIN_REDIRECT_URL = 'applicants:applicant-list'
+LOGOUT_REDIRECT_URL = 'applicants:applicant-list'
