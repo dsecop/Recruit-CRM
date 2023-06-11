@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -7,7 +8,7 @@ from companies.forms import CompanyCreateForm
 from companies.models import Company
 
 
-class CompanyCreateView(generic.CreateView):
+class CompanyCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = CompanyCreateForm
     template_name = 'company_create.html'
     success_url = reverse_lazy('applicants:applicant-list')
