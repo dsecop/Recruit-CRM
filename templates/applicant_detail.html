@@ -24,7 +24,7 @@
     {% endfor %}
     </ul>
 
-    <p><a href="#">Update applicant</a></p>
+    <p><a href='{% url 'applicants:applicant-update' applicant.id %}'>Update applicant</a></p>
     <p><a href="#">Delete applicant</a></p>
 
 {% endblock content %}

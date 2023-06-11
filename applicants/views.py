@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views import generic
 
-from applicants.forms import ApplicantCreateForm
+from applicants.forms import ApplicantCreateForm, ApplicantUpdateForm
 from applicants.models import Applicant
 
 
@@ -27,3 +27,14 @@ class ApplicantDetailView(LoginRequiredMixin, generic.DetailView):
     model = Applicant
     template_name = 'applicant_detail.html'
     context_object_name = 'applicant'
+
+
+class ApplicantUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Applicant
+    form_class = ApplicantUpdateForm
+    template_name = 'applicant_update.html'
+    success_url = reverse_lazy('applicants:applicant-list')
+
+    def get_queryset(self):
+        user = self.request.user
+        return Applicant.objects.filter(company=user.company)
