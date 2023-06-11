@@ -14,7 +14,7 @@ class CompanyCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = reverse_lazy('applicants:applicant-list')
 
     def dispatch(self, request, *args, **kwargs):
-        if Company.objects.filter(owner=self.request.user):
+        if Company.objects.filter(owner=self.request.user.id):
             return redirect('applicants:applicant-list')
         return super().dispatch(request, *args, **kwargs)
 
