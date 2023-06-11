@@ -1,0 +1,30 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+    <p><a href="{% url 'applicants:applicant-list' %}">Go back to applicant list</a></p>
+    <ul>
+        {% if applicant.profile_picture %}
+            <li>Profile picture: <img src='{{ applicant.profile_picture.url }}'></li>
+        {% endif %}
+        <li>First name: {{ applicant.first_name }}</li>
+        <li>Last name: {{ applicant.last_name }}</li>
+        <li>Title: {{ applicant.title }}</li>
+        <li>Note: {{ applicant.note }}</li>
+        <li>City: {{ applicant.city }}</li>
+        <li>Email address: {{ applicant.email }}</li>
+        <li>Recruiter: {{ applicant.recruiter }}</li>
+        <li>Company: {{ applicant.company }}</li>
+    </ul>
+
+    <ul>
+    <p>User tags:</p>
+    {% for tag in applicant.tags.all %}
+        <li>{{ tag }}</li>
+    {% endfor %}
+    </ul>
+
+    <p><a href="#">Update applicant</a></p>
+    <p><a href="#">Delete applicant</a></p>
+
+{% endblock content %}
