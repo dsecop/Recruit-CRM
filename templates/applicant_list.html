@@ -5,7 +5,7 @@
     <a href="{% url 'applicants:applicant-create' %}">Create a new applicant</a>
     <ul>
     {% for applicant in applicants %}
-        <li>{{ applicant }}</li>
+        <li><a href='{% url 'applicants:applicant-detail' applicant.id %}'>{{ applicant }}</a></li>
     {% endfor %}
     </ul>
 
