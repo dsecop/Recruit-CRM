@@ -12,7 +12,7 @@ class ApplicantListView(LoginRequiredMixin, generic.ListView):
     context_object_name = 'applicants'
 
 
-class ApplicantCreateView(generic.CreateView):
+class ApplicantCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = ApplicantCreateForm
     template_name = 'applicant_create.html'
     success_url = reverse_lazy('applicants:applicant-list')
