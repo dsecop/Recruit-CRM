@@ -21,3 +21,9 @@ class ApplicantCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.recruiter = self.request.user
         form.instance.company = self.request.user.company
         return super().form_valid(form)
+
+
+class ApplicantDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Applicant
+    template_name = 'applicant_detail.html'
+    context_object_name = 'applicant'
