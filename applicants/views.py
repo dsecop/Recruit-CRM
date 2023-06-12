@@ -17,7 +17,7 @@ class ApplicantListView(LoginRequiredMixin, generic.ListView):
             queryset = Applicant.objects.filter(company=user.company)
         else:
             queryset = Applicant.objects.filter(company=user.recruiter.company)
-            queryset = queryset.filter(recruiter__user=user)
+            queryset = queryset.filter(recruiter=user)
         return queryset
 
 

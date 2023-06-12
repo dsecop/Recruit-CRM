@@ -4,6 +4,10 @@
         {% if user.is_authenticated %}
             <p>Hello, {{ user.username }}</p>
             <li><a href="{% url 'accounts:logout' %}">Log out</a></li>
+            {% if request.user.is_company_owner %}
+                <li><a href="{% url 'companies:recruiter-list' %}">Recruiters</a></li>
+            {% endif %}
+                <li><a href="{% url 'applicants:applicant-list' %}">Applicants</a></li>
         {% else %}
             <li><a href="{% url 'accounts:login' %}">Log in</a></li>
             <li><a href="{% url 'accounts:signup' %}">Sign up</a></li>

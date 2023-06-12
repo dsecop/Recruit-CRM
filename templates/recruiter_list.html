@@ -1,0 +1,11 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+    <ul>
+    {% for recruiter in recruiters %}
+        <li><a href='#'>{{ recruiter }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}
