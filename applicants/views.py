@@ -11,6 +11,15 @@ class ApplicantListView(LoginRequiredMixin, generic.ListView):
     template_name = 'applicant_list.html'
     context_object_name = 'applicants'
 
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_company_owner:
+            queryset = Applicant.objects.filter(company=user.company)
+        else:
+            queryset = Applicant.objects.filter(company=user.recruiter.company)
+            queryset = queryset.filter(recruiter__user=user)
+        return queryset
+
 
 class ApplicantCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = ApplicantCreateForm
