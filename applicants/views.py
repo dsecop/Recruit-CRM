@@ -38,3 +38,12 @@ class ApplicantUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_queryset(self):
         user = self.request.user
         return Applicant.objects.filter(company=user.company)
+
+
+class ApplicantDeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = 'applicant_delete.html'
+    success_url = reverse_lazy('applicants:applicant-list')
+
+    def get_queryset(self):
+        user = self.request.user
+        return Applicant.objects.filter(company=user.company)
