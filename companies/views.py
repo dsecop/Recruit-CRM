@@ -1,10 +1,12 @@
+import random
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from companies.forms import CompanyCreateForm
+from companies.forms import CompanyCreateForm, RecruiterCreateForm
 from companies.models import Company
 from companies.models import Recruiter
 
@@ -38,3 +40,18 @@ class RecruiterListView(LoginRequiredMixin, generic.ListView):
         user = self.request.user
         company = user.company
         return Recruiter.objects.filter(company=company)
+
+
+class RecruiterCreateView(LoginRequiredMixin, generic.CreateView):
+    form_class = RecruiterCreateForm
+    template_name = 'recruiter_create.html'
+    success_url = reverse_lazy('companies:recruiter-list')
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.is_company_owner = False
+        user.is_recruiter = True
+        user.set_password(f'{random.randint(0, 10000)}')
+        user.save()
+        Recruiter.objects.create(user=user, company=self.request.user.company)
+        return super(RecruiterCreateView, self).form_valid(form)
