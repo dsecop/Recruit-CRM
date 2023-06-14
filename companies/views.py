@@ -55,3 +55,13 @@ class RecruiterCreateView(LoginRequiredMixin, generic.CreateView):
         user.save()
         Recruiter.objects.create(user=user, company=self.request.user.company)
         return super(RecruiterCreateView, self).form_valid(form)
+
+
+class RecruiterDetailView(LoginRequiredMixin, generic.DetailView):
+    template_name = 'recruiter_detail.html'
+    context_object_name = 'recruiter'
+
+    def get_queryset(self):
+        user = self.request.user
+        company = user.company
+        return Recruiter.objects.filter(company=company)
