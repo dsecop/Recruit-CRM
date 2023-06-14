@@ -4,7 +4,7 @@
 
     <ul>
     {% for recruiter in recruiters %}
-        <li><a href='#'>{{ recruiter }}</a></li>
+        <li><a href='{% url 'companies:recruiter-detail' recruiter.id %}'>{{ recruiter }}</a></li>
     {% endfor %}
     </ul>
 
