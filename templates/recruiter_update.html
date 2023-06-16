@@ -1,0 +1,13 @@
+{% include 'base.html' %}
+
+
+{% block content %}
+
+    <a href="{% url 'companies:recruiter-list' %}">Go back to recruiter list</a>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+    </form>
+
+{% endblock content %}

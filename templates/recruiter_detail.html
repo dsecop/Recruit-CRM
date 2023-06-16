@@ -10,7 +10,7 @@
         <li>Email address: {{ recruiter.user.email }}</li>
     </ul>
 
-    <p><a href='#'>Update recruiter</a></p>
+    <p><a href='{% url 'companies:recruiter-update' recruiter.id %}'>Update recruiter</a></p>
     <p><a href='#'>Delete recruiter</a></p>
 
 {% endblock content %}

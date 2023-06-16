@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
-from companies.forms import CompanyCreateForm, RecruiterCreateForm
+from companies.forms import CompanyCreateForm, RecruiterCreateForm, RecruiterUpdateForm
 from companies.models import Company
 from companies.models import Recruiter
 
@@ -60,6 +60,17 @@ class RecruiterCreateView(LoginRequiredMixin, generic.CreateView):
 class RecruiterDetailView(LoginRequiredMixin, generic.DetailView):
     template_name = 'recruiter_detail.html'
     context_object_name = 'recruiter'
+
+    def get_queryset(self):
+        user = self.request.user
+        company = user.company
+        return Recruiter.objects.filter(company=company)
+
+
+class RecruiterUpdateView(LoginRequiredMixin, generic.UpdateView):
+    form_class = RecruiterUpdateForm
+    template_name = 'recruiter_update.html'
+    success_url = reverse_lazy('companies:recruiter-list')
 
     def get_queryset(self):
         user = self.request.user
