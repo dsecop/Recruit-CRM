@@ -11,6 +11,6 @@
     </ul>
 
     <p><a href='{% url 'companies:recruiter-update' recruiter.id %}'>Update recruiter</a></p>
-    <p><a href='#'>Delete recruiter</a></p>
+    <p><a href='{% url 'companies:recruiter-delete' recruiter.id %}'>Delete recruiter</a></p>
 
 {% endblock content %}
