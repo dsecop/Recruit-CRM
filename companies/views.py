@@ -76,3 +76,13 @@ class RecruiterUpdateView(LoginRequiredMixin, generic.UpdateView):
         user = self.request.user
         company = user.company
         return Recruiter.objects.filter(company=company)
+
+
+class RecruiterDeleteView(LoginRequiredMixin, generic.DeleteView):
+    template_name = 'recruiter_delete.html'
+    success_url = reverse_lazy('companies:recruiter-list')
+
+    def get_queryset(self):
+        user = self.request.user
+        company = user.company
+        return Recruiter.objects.filter(company=company)

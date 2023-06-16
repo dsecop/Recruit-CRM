@@ -1,0 +1,14 @@
+{% include 'base.html' %}
+
+
+{% block content %}
+
+    <a href="{% url 'companies:recruiter-list' %}">Go back to recruiter list</a>
+    <p>Are you sure you want to delete this recruiter?</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Delete</button>
+    </form>
+
+{% endblock content %}
