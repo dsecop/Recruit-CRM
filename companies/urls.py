@@ -5,6 +5,7 @@ from companies.views import (
     RecruiterCreateView,
     RecruiterDetailView,
     RecruiterUpdateView,
+    RecruiterDeleteView,
 )
 
 app_name = 'companies'
@@ -15,4 +16,5 @@ urlpatterns = [
     path('create/recruiter/', RecruiterCreateView.as_view(), name='recruiter-create'),
     path('recruiter/<int:pk>/', RecruiterDetailView.as_view(), name='recruiter-detail'),
     path('recruiter/<int:pk>/update/', RecruiterUpdateView.as_view(), name='recruiter-update'),
+    path('recruiter/<int:pk>/delete/', RecruiterDeleteView.as_view(), name='recruiter-delete'),
 ]
