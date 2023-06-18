@@ -13,12 +13,10 @@ class SignUpView(generic.CreateView):
 
     @transaction.atomic
     def form_valid(self, form):
-        to_return = super().form_valid(form)
         user = form.save()
         if user.is_company_owner:
             Company.objects.create(name='default', owner=user)
-            user.save()
-        return to_return
+        return super(SignUpView, self).form_valid(form)
 
 
 class HomePageView(generic.TemplateView):
