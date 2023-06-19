@@ -1,0 +1,15 @@
+{% include 'base.html' %}
+
+{% block content %}
+
+    <p><a href="{% url 'companies:recruiter-list' %}">Go back to recruiter list</a></p>
+    <ul>
+        <li>Name: {{ company.name }}</li>
+        <li>Website: {{ company.website }}</li>
+        <li>Owner: {{ company.owner }}</li>
+    </ul>
+
+{#    <p><a href='{% url 'companies:recruiter-update' recruiter.id %}'>Update recruiter</a></p>#}
+{#    <p><a href='{% url 'companies:recruiter-delete' recruiter.id %}'>Delete recruiter</a></p>#}
+
+{% endblock content %}
