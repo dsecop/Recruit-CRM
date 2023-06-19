@@ -45,7 +45,7 @@ class ApplicantUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_queryset(self):
         user = self.request.user
-        return Applicant.objects.filter(company=user.company)
+        return Applicant.objects.filter(company=user.recruiter.company)
 
 
 class ApplicantDeleteView(LoginRequiredMixin, generic.DeleteView):
