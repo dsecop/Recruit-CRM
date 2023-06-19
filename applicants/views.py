@@ -27,7 +27,7 @@ class ApplicantCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.recruiter = self.request.user
-        form.instance.company = self.request.user.company
+        form.instance.company = self.request.user.recruiter.company
         return super().form_valid(form)
 
 
