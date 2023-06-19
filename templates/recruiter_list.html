@@ -2,6 +2,9 @@
 
 {% block content %}
 
+    {% if request.user.is_company_owner %}
+        <a href="{% url 'companies:recruiter-create' %}">Create a new recruiter</a>
+    {% endif %}
     <ul>
     {% for recruiter in recruiters %}
         <li><a href='{% url 'companies:recruiter-detail' recruiter.id %}'>{{ recruiter }}</a></li>

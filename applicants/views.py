@@ -16,8 +16,7 @@ class ApplicantListView(LoginRequiredMixin, generic.ListView):
         if user.is_company_owner:
             queryset = Applicant.objects.filter(company=user.company)
         else:
-            queryset = Applicant.objects.filter(company=user.recruiter.company)
-            queryset = queryset.filter(recruiter=user)
+            queryset = Applicant.objects.filter(recruiter=user)
         return queryset
 
 
@@ -28,7 +27,7 @@ class ApplicantCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.recruiter = self.request.user
-        form.instance.company = self.request.user.company
+        form.instance.company = self.request.user.recruiter.company
         return super().form_valid(form)
 
 
@@ -46,7 +45,7 @@ class ApplicantUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_queryset(self):
         user = self.request.user
-        return Applicant.objects.filter(company=user.company)
+        return Applicant.objects.filter(company=user.recruiter.company)
 
 
 class ApplicantDeleteView(LoginRequiredMixin, generic.DeleteView):

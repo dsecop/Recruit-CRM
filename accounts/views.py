@@ -1,4 +1,5 @@
 from django.db import transaction
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -21,3 +22,8 @@ class SignUpView(generic.CreateView):
 
 class HomePageView(generic.TemplateView):
     template_name = 'home_page.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated and request.user.is_company_owner:
+            return redirect('companies:company-dashboard', pk=self.request.user.company.id)
+        return super().dispatch(request, *args, **kwargs)
