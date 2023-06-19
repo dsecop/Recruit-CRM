@@ -16,8 +16,7 @@ class ApplicantListView(LoginRequiredMixin, generic.ListView):
         if user.is_company_owner:
             queryset = Applicant.objects.filter(company=user.company)
         else:
-            queryset = Applicant.objects.filter(company=user.recruiter.company)
-            queryset = queryset.filter(recruiter=user)
+            queryset = Applicant.objects.filter(recruiter=user)
         return queryset
 
 
